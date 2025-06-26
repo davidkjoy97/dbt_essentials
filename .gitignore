@@ -1,0 +1,17 @@
+# dbt artifacts
+target/
+dbt_packages/
+
+# OS cruft
+.DS_Store
+*.pyc
+__pycache__/
+
+# editor configs (optional)
+.vscode/
+.idea/
+
+# data
+data/
+logs/
+.dbt_venv/
