@@ -1,0 +1,17 @@
+version: 2
+sources:
+  - name: raw         
+    schema: raw       
+    tables:
+      - name: pharma_products
+
+models:
+  - name: stg_pharma_products
+    description: "Cleaned staging view of pharma products"
+    tests:
+      - not_null:
+          column_name: product_id
+      - not_null:
+          column_name: product_price
+  - name: dim_price
+    description: "Subset of columns with important information"
