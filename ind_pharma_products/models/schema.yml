@@ -1,17 +1,29 @@
 version: 2
-sources:
-  - name: raw         
-    schema: raw       
-    tables:
-      - name: pharma_products
 
 models:
+ 
   - name: stg_pharma_products
     description: "Cleaned staging view of pharma products"
-    tests:
-      - not_null:
-          column_name: product_id
-      - not_null:
-          column_name: product_price
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      
+      - name: product_price
+        tests:
+          - not_null
+      
+      - name: category_type
+        tests:
+          - accepted_values:
+              values: ['other', 'analgesic', 'antibiotic', 'antihistamine', 'antihypertensive', 'corticosteroid', 'antacid', 
+              'bronchodilator', 'antidepressant', 'antidiabetic', 'diuretic']
+
+      - name: dosage_form
+        tests:
+          - accepted_values:
+              values: ['capsule','cream','drops','gel','inhaler','injection','ointment','other','powder','respules','solution','spray','suspension','syrup','tablet','False']
+  
   - name: dim_price
-    description: "Subset of columns with important information"
+    description: "Subset of columns with specific information"
